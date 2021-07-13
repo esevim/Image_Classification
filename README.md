@@ -1,4 +1,4 @@
-# Classifying Images using CNN
+# Classifying Images using CNN architecture with Tensorflow
 
  - Application:
 We see different implementations of Image classification  in our daily life around us, like health, security etc.
