@@ -1,7 +1,3 @@
-# Image_Classification
-Image Classification among 10 monkey species
-
-
 # Classifying Images using CNN
 
  - Application:
