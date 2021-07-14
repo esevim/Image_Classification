@@ -10,7 +10,7 @@ import pandas as pd # Data Processing
 
 # Input files are available in '''C:/Erdem PC External/GBC/13-DL-2/Project/Data''' directory.
 root = 'C:/Erdem PC External/GBC/13-DL-2/Project/Data'
-train_dir = f'{root}/training/training200/'
+train_dir = f'{root}/training/training500/'
 test_dir = f'{root}/validation/validation/'
 
 import os
@@ -24,7 +24,7 @@ monkey_labels_df = pd.read_csv(f"{root}/monkey_labels.txt", names=cols, skiprows
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Convolution2D, MaxPooling2D, AveragePooling2D, Flatten, Dense
 from tensorflow.keras.layers import Activation, BatchNormalization, GlobalAveragePooling2D, Dropout
-
+from tensorflow import keras
 #----------------------------------------------------------------------------
 # Look for some example images : 
 def image_show(num_image,label): # Function showing number ofrandom  images on specified class. 
@@ -77,7 +77,7 @@ def get_net(num_classes):
     model.add(BatchNormalization())
     model.add(Dropout(0.2))
     
-    model.add(Convolution2D(512, 1, 1, 
+    model.add(Convolution2D(256, 1, 1, 
                             activation = 'relu'))
     model.add(AveragePooling2D())
     model.add(BatchNormalization())
@@ -85,9 +85,9 @@ def get_net(num_classes):
     model.add(Flatten())
         
     # Fully connected NN
-    N_neurons = 80
-    model.add(Dense(units = N_neurons, activation = 'relu'))
-    model.add(Dense(units = 50, activation = 'relu'))
+    N_neurons = 160
+    model.add(Dense(units = N_neurons, activation = 'relu', kernel_regularizer = keras.regularizers.l1()))
+    model.add(Dense(units = 100, activation = 'relu', kernel_regularizer = keras.regularizers.l1()))
     model.add(Dense(units = num_classes, activation = 'softmax'))
     
     return model
@@ -147,7 +147,7 @@ test_num = test_generator.samples
 
 # creat checkpoints to save the best fit
 from keras.callbacks import ModelCheckpoint
-checkpointer = ModelCheckpoint(filepath="best_weights.hdf5", 
+checkpointer = ModelCheckpoint(filepath="best_weights_500.hdf5", 
                                monitor = 'val_accuracy',
                                verbose=1, 
                                save_best_only=True)
@@ -155,19 +155,19 @@ checkpointer = ModelCheckpoint(filepath="best_weights.hdf5",
 history = net.fit_generator(train_generator,
                          steps_per_epoch = None,
                          callbacks=[checkpointer],
-                         epochs = 10,
+                         epochs = 20,
                          validation_data = train_generator,
                          validation_steps = None)
 
 # Save the model ----------------------------------------
-net.save('project_run.h5')
+net.save('project_run_500.h5')
 #net.save_weights('best_weights.hdf5')
 
 # load weights ------------------------------------------
 #net.load_weights('best_weights.hdf5')
 
 from tensorflow.keras.models import load_model
-model_name = "project_run.h5"
+model_name = "project_run_500.h5"
 
 net = load_model(model_name)
 
