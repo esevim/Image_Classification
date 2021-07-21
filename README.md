@@ -14,7 +14,7 @@ How your model change when you have a deeper model or change number of nodes (tr
 The best performance (i.e what are the model hyperparameters or structure that you will get the best performance, or most optimized model)
 
 <figure>
-  <img src="https://github.com/esevim/Image_Classification/blob/main/200%20image/Accuracy.png?raw=true" title="Accuracy for 200 images">
-  <figcaption>Optional title</figcaption>
+  <img src="https://github.com/esevim/Image_Classification/blob/main/200%20image/Accuracy.png?raw=true">
+  <figcaption> Accuracy for 200 images </figcaption>
 </figure>
  
