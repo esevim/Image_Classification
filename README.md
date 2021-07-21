@@ -17,7 +17,9 @@ The best performance (i.e what are the model hyperparameters or structure that y
   <img src="https://github.com/esevim/Image_Classification/blob/main/200%20image/Accuracy.png?raw=true">
   <figcaption>Accuracy for 200 images</figcaption>
 </figure>
-
+ 
+  
+  
 <figure>
   <img src="https://github.com/esevim/Image_Classification/blob/main/200%20image/Loss.png?raw=true">
   <figcaption>Loss for 200 images</figcaption>
